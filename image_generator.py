@@ -18,7 +18,8 @@ def python(p_v, base_image):
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-py{p_v}'
     subprocess.run("ls -lrt", shell=True, check=True)
     subprocess.run("pwd", shell=True, check=True)
-    subprocess.run("cd ./dockerfiles/centos/python", shell=True, check=True)
+    subprocess.run("cd dockerfiles/centos/python", shell=True, check=True)
+    subprocess.run("pwd", shell=True, check=True)
     subprocess.run("ls -lrt", shell=True, check=True)
     print(cd_command)
     print(docker_build_command)
