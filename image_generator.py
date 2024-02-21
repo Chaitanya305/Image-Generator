@@ -5,6 +5,7 @@ from versions import base_images
 
 def docker_cmd(cd_cmd, docker_build_cmd, docker_push_cmd):
     subprocess.run(cd_cmd, shell=True, check=True)
+    subprocess.run("pwd", shell=True, check=True)
     subprocess.run(docker_build_cmd, shell=True, check=True)
     subprocess.run(docker_push_cmd, shell=True, check=True)
     #print(cd_cmd)
@@ -15,6 +16,7 @@ def python(p_v, base_image):
     cd_command=f'cd dockerfiles/{base_image}/python'
     docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg PYTHON_VERSION={p_v} -t chaitanya305/dataflow-base-py{p_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-py{p_v}'
+    subprocess.run("ls -lrt", shell=True, check=True)
     print(cd_command)
     print(docker_build_command)
     print(docker_push_cmd)
