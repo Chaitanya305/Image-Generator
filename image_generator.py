@@ -3,9 +3,8 @@ from versions import python_versions
 from versions import r_versions
 from versions import base_images
 
-def docker_cmd(cd_cmd, docker_build_cmd, docker_push_cmd):
-    subprocess.run(cd_cmd, shell=True, check=True)
-    subprocess.run("pwd", shell=True, check=True)
+def docker_cmd(docker_build_cmd, docker_push_cmd):
+    #subprocess.run(cd_cmd, shell=True, check=True)
     subprocess.run(docker_build_cmd, shell=True, check=True)
     subprocess.run(docker_push_cmd, shell=True, check=True)
     #print(cd_cmd)
@@ -13,30 +12,25 @@ def docker_cmd(cd_cmd, docker_build_cmd, docker_push_cmd):
     #print(docker_push_cmd)
 
 def python(p_v, base_image):
-    cd_command=f'cd dockerfiles/{base_image}/python'
-    docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg PYTHON_VERSION={p_v} -t chaitanya305/dataflow-base-py{p_v}'
+    #cd_command=f'cd dockerfiles/{base_image}/python'
+    docker_build_command= f'docker build dockerfiles/{base_image}/python --build-arg BASE_IMAGE={base_image} --build-arg PYTHON_VERSION={p_v} -t chaitanya305/dataflow-base-py{p_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-py{p_v}'
-    subprocess.run("ls -lrt", shell=True, check=True)
-    subprocess.run("pwd", shell=True, check=True)
-    subprocess.run("cd dockerfiles/centos/python", shell=True, check=True)
-    subprocess.run("pwd", shell=True, check=True)
-    subprocess.run("ls -lrt", shell=True, check=True)
-    print(cd_command)
+    #print(cd_command)
     print(docker_build_command)
     print(docker_push_cmd)
-    #docker_cmd(cd_command, docker_build_command, docker_push_cmd)
+    docker_cmd(docker_build_command, docker_push_cmd)
     
 def r(r_v, base_image):
     cd_command=f'cd dockerfiles/{base_image}/r_base'
     docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg R_VERSION={r_v} -t chaitanya305/dataflow-base-r{r_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-r{r_v}'
-    docker_cmd(cd_command, docker_build_command, docker_push_cmd)
+    #docker_cmd(cd_command, docker_build_command, docker_push_cmd)
 
 def python_r(p_v, r_v, base_image):
     cd_command=f'cd dockerfiles/{base_image}/python_r'
     docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg R_VERSION={r_v} --build-arg PYTHON_VERSION={p_v} -t chaitanya305/dataflow-base-r{r_v}py{p_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-r{r_v}py{p_v}'
-    docker_cmd(cd_command, docker_build_command, docker_push_cmd)
+    #docker_cmd(cd_command, docker_build_command, docker_push_cmd)
 
 #docker_login_cmd=f'docker login -u user_name -p pass'
 #subprocess.run(docker_login_cmd, shell=True, check=True)
