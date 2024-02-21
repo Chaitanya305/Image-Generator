@@ -1,0 +1,15 @@
+name: this is to check space
+on:
+  push:
+    branches: ["test"]
+jobs:
+ testing:
+   runs-on: ubuntu-latest 
+   steps:
+     - name: chekcing docker images
+       run: docker images
+     - name: checking disk space
+       run: df -h
+     - name: chekcing
+       run: ls -lrt 
+    
