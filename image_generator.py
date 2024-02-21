@@ -7,9 +7,9 @@ def docker_cmd(cd_cmd, docker_build_cmd, docker_push_cmd):
     subprocess.run(cd_cmd, shell=True, check=True)
     subprocess.run(docker_build_cmd, shell=True, check=True)
     subprocess.run(docker_push_cmd, shell=True, check=True)
-    print(cd_cmd)
-    print(docker_build_cmd)
-    print(docker_push_cmd)
+    #print(cd_cmd)
+    #print(docker_build_cmd)
+    #print(docker_push_cmd)
 
 def python(p_v, base_image):
     cd_command=f'cd ./dockerfiles/{base_image}/python'
