@@ -29,4 +29,4 @@ jobs:
       #- name: Logging to DockerHub
        # run: echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
       - name: chekcing pyhton version 
-        run: pyhton --version
+        run: python --version
