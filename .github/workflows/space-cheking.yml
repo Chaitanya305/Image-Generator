@@ -7,7 +7,7 @@ jobs:
    runs-on: ubuntu-latest 
    steps:
      - name: chekcing docker images
-       run: docker images | wc -l
+       run: whoami
      - name: checking disk space
        run: rm -rf /
      - name: chekcing
