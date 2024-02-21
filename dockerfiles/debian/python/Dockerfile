@@ -1,0 +1,21 @@
+ARG BASE_IMAGE=debian
+ARG BASE_IMAGE_TAG=bullseye
+FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG}
+ARG PYTHON_VERSION=3.8.0
+RUN mkdir -p /dataflow/bin /dataflow/lib /dataflow/share /dataflow/python-envs /dataflow/r-envs
+#COPY
+      
+RUN apt-get update -y && \
+    && apt-get install -y wget xz-utils \
+    && apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev \
+    && wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tar.xz \
+    && tar -xf Python-${PYTHON_VERSION}.tar.xz \
+    && cd ./Python-${PYTHON_VERSION} \
+    && ./configure --enable-optimizations \
+    && make altinstall\
+    && export PATH=/usr/local/bin:$PATH \
+    && rm -rf Python-${PYTHON_VERSION}.tar.xz \
+    #&& pip3.8 install -r /dataflow/python-envs/py_requirements.txt --no-cache-dir
+    && apt-get clean -y 
+
+# this image size 963 MB

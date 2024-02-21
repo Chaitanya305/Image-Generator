@@ -1,0 +1,18 @@
+Pyhton Version: 3.8.0
+R Version: 4.3
+Base Image: centos
+
+# thi is use to generate Image as per above information Provided
+Python Version Please slect any one of below
+3.8.0, 3.9.0, 3.10.0
+R Version select any of of below 
+3.6, 4.3
+Base Image select any of below
+centos, debian
+eg
+Pyhton Version: 3.8.0  
+R Version: false       # for Image without R Version.
+Base Image: centos
+
+
+All version files should get generated. at same time

@@ -1,0 +1,32 @@
+ARG BASE_IMAGE=debian
+ARG BASE_IMAGE_TAG=bullseye
+FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG}
+ARG PYTHON_VERSION=3.8.0
+ARG R_VERSION=4.3.2
+ARG OS_IDENTIFIER=debian-11
+RUN mkdir -p /dataflow/bin /dataflow/lib /dataflow/share /dataflow/python-envs /dataflow/r-envs
+#COPY
+
+#installing python
+RUN apt-get update -y && \
+    apt-get install -y wget xz-utils && \
+    apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev && \
+    wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tar.xz && \
+    tar -xf Python-${PYTHON_VERSION}.tar.xz && \
+    cd ./Python-${PYTHON_VERSION} && \
+    ./configure --enable-optimizations && \
+    make altinstall && \
+    export PATH=/usr/local/bin:$PATH && \
+    #&& pip3.8 install -r /dataflow/python-envs/py_requirements.txt --no-cache-dir
+    rm -rf Python-${PYTHON_VERSION}.tar.xz && \
+    #installing R
+    wget https://cdn.posit.co/r/${OS_IDENTIFIER}/pkgs/r-${R_VERSION}_1_amd64.deb && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -f -y ./r-${R_VERSION}_1_amd64.deb && \
+    ln -s /opt/R/${R_VERSION}/bin/R /usr/bin/R && \
+    ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/bin/Rscript && \
+    ln -s /opt/R/${R_VERSION}/lib/R /usr/lib/R && \
+    rm r-${R_VERSION}_1_amd64.deb && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean -y
+
+#This took  1.31 GB
