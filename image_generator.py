@@ -12,19 +12,19 @@ def docker_cmd(cd_cmd, docker_build_cmd, docker_push_cmd):
     #print(docker_push_cmd)
 
 def python(p_v, base_image):
-    cd_command=f'cd ./dockerfiles/{base_image}/python'
+    cd_command=f'cd dockerfiles/{base_image}/python'
     docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg PYTHON_VERSION={p_v} -t chaitanya305/dataflow-base-py{p_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-py{p_v}'
     docker_cmd(cd_command, docker_build_command, docker_push_cmd)
     
 def r(r_v, base_image):
-    cd_command=f'cd ./dockerfiles/{base_image}/r_base'
+    cd_command=f'cd dockerfiles/{base_image}/r_base'
     docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg R_VERSION={r_v} -t chaitanya305/dataflow-base-r{r_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-r{r_v}'
     docker_cmd(cd_command, docker_build_command, docker_push_cmd)
 
 def python_r(p_v, r_v, base_image):
-    cd_command=f'cd ./dockerfiles/{base_image}/python_r'
+    cd_command=f'cd dockerfiles/{base_image}/python_r'
     docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg R_VERSION={r_v} --build-arg PYTHON_VERSION={p_v} -t chaitanya305/dataflow-base-r{r_v}py{p_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-r{r_v}py{p_v}'
     docker_cmd(cd_command, docker_build_command, docker_push_cmd)
