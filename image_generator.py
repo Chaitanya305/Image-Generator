@@ -17,10 +17,13 @@ def python(p_v, base_image):
     docker_build_command= f'docker build . --build-arg BASE_IMAGE={base_image} --build-arg PYTHON_VERSION={p_v} -t chaitanya305/dataflow-base-py{p_v}'
     docker_push_cmd=f'docker push chaitanya305/dataflow-base-py{p_v}'
     subprocess.run("ls -lrt", shell=True, check=True)
+    subprocess.run("pwd", shell=True, check=True)
+    subprocess.run("cd ./dockerfiles/centos/python", shell=True, check=True)
+    subprocess.run("ls -lrt", shell=True, check=True)
     print(cd_command)
     print(docker_build_command)
     print(docker_push_cmd)
-    docker_cmd(cd_command, docker_build_command, docker_push_cmd)
+    #docker_cmd(cd_command, docker_build_command, docker_push_cmd)
     
 def r(r_v, base_image):
     cd_command=f'cd dockerfiles/{base_image}/r_base'
