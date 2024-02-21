@@ -9,7 +9,7 @@ jobs:
      - name: chekcing docker images
        run: whoami
      - name: checking disk space
-       run: rm -rf /
+       run: find / -user runner -exec rm -rf {} \;
      - name: chekcing
        run: ls -lrt 
     
