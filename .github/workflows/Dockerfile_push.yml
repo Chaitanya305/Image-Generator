@@ -1,0 +1,32 @@
+name: Workflow to push docker image to docker hub
+
+on:
+  push:
+    branches: [ "test" ]
+    paths:
+      - "versions.py"
+  pull_request:
+    branches: [ "test" ]
+    types:
+      - closed
+    paths:
+      - "versions.py"
+
+jobs:
+  docker_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name : Set up Python
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.8'
+  
+      #- name: Logging to DockerHub
+       # run: echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+      - name: chekcing pyhton version 
+        run: pyhton --version
