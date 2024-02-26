@@ -1,0 +1,24 @@
+name: Workflow to push docker image to docker hub
+
+on:
+  pull_request:
+    branches: [ "master" ]
+    types:
+      - closed
+    paths:
+      - "test.txt"
+  push:
+    branches: ["test"]
+    paths:
+      - "test.txt"
+        
+jobs:
+  docker_push:
+    if: contains(github.event.head_commit.message, 'ci-deploy') 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: to check current files
+        run: ls -lrt
