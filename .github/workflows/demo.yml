@@ -14,7 +14,7 @@ on:
         
 jobs:
   docker_push:
-    if: contains(github.event.head_commit.message, 'ci-deploy') 
+    if: contains(github.event.head_commit.message, 'ci-deploy') && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
